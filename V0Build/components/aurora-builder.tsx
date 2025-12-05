@@ -215,10 +215,10 @@ export function AuroraBuilder() {
                       {
                         id: generateId(),
                         type: "coding",
-                        content: `Generated ${chunk.file.path}`,
-                        files: [chunk.file],
+                        content: `Generated ${chunk.file?.path || "file"}`,
+                        files: chunk.file ? [chunk.file] : [],
                         timestamp: new Date(),
-                      },
+                      } as GenerationStep,
                     ])
 
                     // Auto-select the newly generated file
@@ -241,7 +241,7 @@ export function AuroraBuilder() {
                       type: "complete",
                       content: chunk.content || `Generation complete - ${collectedFiles.length} file(s) created`,
                       timestamp: new Date(),
-                    },
+                    } as GenerationStep,
                   ])
                   break
 
